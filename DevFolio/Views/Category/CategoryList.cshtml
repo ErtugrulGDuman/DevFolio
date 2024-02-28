@@ -1,5 +1,4 @@
 ﻿@model List<DevFolio.Models.TblCategory>
-
 @{
     ViewBag.Title = "CategoryList";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -7,26 +6,33 @@
 
 <h2>Kategori Listesi</h2>
 
-
-
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Kategori İsmi</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.CategoryId</td>
-            <td>@item.CategoryName</td>>
-            <td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
+<div class="container">
+    <a href="/Category/CreateCategory/" class="btn btn-info">Yeni Kategori</a>
+    <br />
+    <br />
+    <table class="table table-bordered">
+        <tr class="table-secondary">
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
         </tr>
-    }
+
+        @foreach (var item in Model)
+        {
 
 
-</table>
-<a href="/Category/CreateCategory/" class="btn btn-info">Yeni Kategori Girişi</a>
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td><a href="/Category/DeleteCategory/@item.CategoryId" class="btn btn-warning">Sil</a></td>
+                <td><a href="/Category/UpdateCategory/@item.CategoryId" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
+
+
+    </table>
+</div>
+
+
+

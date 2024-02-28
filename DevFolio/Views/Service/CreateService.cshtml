@@ -1,17 +1,31 @@
-﻿
+﻿@model DevFolio.Models.TblService
 @{
     ViewBag.Title = "CreateService";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Yeni Servis Girişi</h2>
+<h2>Hizmet Ekle</h2>
 
-<form method="post">
-    <label>Servis adı</label>
-    <input type="text" class="form-control" name="ServiceTitle" />
-    <br />
-    <label>Servis Açıklama</label>
-    <input type="text" class="form-control" name="Description" />
-    <br />
-    <button class="btn btn-info">Servisi Ekle</button>
-</form>
+<br />
+<div class="container">
+
+    @using (Html.BeginForm("CreateService", "Service", FormMethod.Post))
+    {
+        <form class="form-group" method="post">
+            <label>Hizmet Adı</label>
+
+            @Html.TextBoxFor(x => x.ServiceTitle, new { @class = "form-control" })
+            <br />
+            <label>Resim</label>
+            @Html.TextBoxFor(x => x.ServiceImageUrl, new { @class = "form-control" })
+            <br />
+            <label>Açıklama</label>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            <br />
+
+            <button class="btn btn-primary">Kaydet</button>
+        </form>
+
+    }
+
+</div>

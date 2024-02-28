@@ -7,16 +7,20 @@
 
 <h2>Yetenek Güncelleme Sayfası</h2>
 
-<form method="post">
-    <label>Yetenek Id</label>
-    <input type="text" class="form-control" name="SkillId" value="@Model.SkillID" />
-    <br />
-    <label>Yetenek Başlığı</label>
-    <input type="text" class="form-control" name="SkillTitle" value="@Model.SkillTitle" />
-    <br />
-    <label>Yetenek Değeri</label>
-    <input type="text" class="form-control" name="SkillValue" value="@Model.SkillValue" />
-    <br />
-    <button class="btn btn-info"></button>
-</form>
+<br />
+<div class="container">
+    <form method="post" action="/Skill/UpdateSkill/">
+        <br />
+        <label>Yetenek Id</label>
+        <input type="text" name="SkillID" value="@Model.SkillID" class="form-control" />
+        <br />
+        <label>Yetenek Id</label>
+        <input type="text" name="SkillTitle" value="@Model.SkillTitle" class="form-control" />
+        <br />
+        <label>Yetenek Oranı</label>
+        <input type="text" name="SkillValue" value="@Model.SkillValue" class="form-control" />
+        <br />
 
+        <button class="btn btn-primary">Güncelle</button>
+    </form>
+</div>

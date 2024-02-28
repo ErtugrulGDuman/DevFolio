@@ -4,19 +4,28 @@
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Testimonial Girişi</h2>
+<h2>Referans Ekle</h2>
 
-<form method="post">
-    <label>Referans adı</label>
-    @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
-    <br />
-    <label>Referans Açıklaması</label>
-    @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+<br />
+<div class="container">
 
-    <br />
-    <label>Referans Görseli</label>
-    @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+    @using (Html.BeginForm("CreateTestimonial", "Testimonial", FormMethod.Post))
+    {
+        <form class="form-group" method="post">
+            <label>Adı Soyadı</label>
 
-    <br />
-    <button class="btn btn-info">Testimonial Kaydet</button>
-</form>
+            @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+            <br />
+            <label>Açıklama</label>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            <br />
+            <label>Resim Adresi</label>
+            @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+            <br />
+
+            <button class="btn btn-primary">Kaydet</button>
+        </form>
+
+    }
+
+</div>

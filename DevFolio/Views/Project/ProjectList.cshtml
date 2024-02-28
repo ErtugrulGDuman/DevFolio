@@ -4,32 +4,40 @@
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Projec Listesi</h2>
+<h2>Proje Listesi</h2>
 
-<table class="table table-bordered">
-    <tr>
-        <th>#</th>
-        <th>Başlık</th>
-        <th>Yapılma tarihi</th>
-        <th>Proje Kategorisi</th>
-        <th>Sil</th>
-        <th>Güncelle</th>
-    </tr>
+<div class="container">
+    <a href="/Project/CreateProject/" class="btn btn-info">Yeni Proje</a>
+    <br />
+    <br />
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.ProjectId</td>
-            <td>@item.Title</td>
-            <td>@item.CreatedDate</td>
-            <td>@item.TblCategory.CategoryName</td>
-            <td><a href="/Project/DeleteProject/@item.ProjectId" class="btn btn-danger">Sil</a></td>
-            <td><a href="/Project/UpdateProject/@item.ProjectId" class="btn btn-success">Güncelle</a></td>
+    <table class="table table-bordered">
+        <tr class="table-secondary">
+            <th>#</th>
+            <th>Proje Başlık</th>
+            <th>Proje Resim</th>
+            <th>Proje Tarihi</th>
+            <th>Kategori</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
         </tr>
-    }
+
+        @foreach (var item in Model)
+        {
 
 
-</table>
+            <tr>
+                <td>@item.ProjectId</td>
+                <td>@item.Title</td>
+                <td>@item.CoverImageUrl</td>
+                <td>@(((DateTime)item.CreatedDate).ToString("dd.MM.yyyy"))</td>
 
-<a href="/Project/CreateProject" class="btn btn-info">Yeni proje oluştur</a>
+                <td>@item.TblCategory.CategoryName</td>
+                <td><a href="/Project/DeleteProject/@item.ProjectId" class="btn btn-warning">Sil</a></td>
+                <td><a href="/Project/UpdateProject/@item.ProjectId" class="btn btn-success">Güncelle</a></td>
+            </tr>
+        }
 
+
+    </table>
+</div>

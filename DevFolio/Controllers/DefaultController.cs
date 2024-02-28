@@ -7,89 +7,96 @@ using DevFolio.Models;
 
 namespace DevFolio.Controllers
 {
-    public class DefaultController : Controller
-    {
-        // GET: Default
-        DbDevFolioEntities db = new DbDevFolioEntities();
-        public ActionResult Index()
-        {
-            return View();
-        }
+	[AllowAnonymous]
+	public class DefaultController : Controller
+	{
+		DbDevFolioEntities db = new DbDevFolioEntities();
+		// GET: Default
+		public ActionResult Index()
+		{
+			return View();
+		}
 
-        public PartialViewResult PartialHead()
-        {
-            return PartialView();
-        }
+		public PartialViewResult PartialHead()
+		{
 
-        public PartialViewResult PartialNavBar()
-        {
-            return PartialView();
-        }
-        public PartialViewResult PartialFeature()
-        {
-            var values = db.TblFeature.ToList();
-            return PartialView(values);
-        }
+			return PartialView();
+		}
 
-        public PartialViewResult PartialProfile()
-        {
-            var values = db.TblProfile.ToList();
-            return PartialView(values);
-        }
+		public PartialViewResult PartialNavbar()
+		{
 
-        public PartialViewResult PartialSkill()
-        {
-            var values = db.TblSkill.ToList();
-            return PartialView(values);
-        }
+			return PartialView();
+		}
 
-        public PartialViewResult PartialAbout()
-        {
-            var values = db.TblAbout.ToList();
-            return PartialView(values);
-        }
+		public PartialViewResult PartialFeature()
+		{
+			var values = db.TblFeature.ToList();
+			return PartialView(values);
+		}
 
-        public PartialViewResult PartialService()
-        {
-            var values = db.TblService.ToList();
-            return PartialView(values);
-        }
+		public PartialViewResult PartialProfile()
+		{
+			var values = db.TblProfile.ToList();
+			return PartialView(values);
+		}
 
-        public PartialViewResult PartialStats()
-        {
-            
-            ViewBag.totaladmin = db.TblAdmin.Count();
-            ViewBag.totalproject = db.Database.SqlQuery<int>("exec totalproject").FirstOrDefault();
-            ViewBag.totaltestimonial = db.TblTestimonial.Count();
-            ViewBag.totalAspNetCoreProject = db.TblProject.Count(x => x.ProjectCategory == db.TblCategory.FirstOrDefault(a=>a.CategoryName=="Asp.Net Core").CategoryId);
-            return PartialView();
-        }
+		public PartialViewResult PartialSkill()
+		{
+			var values = db.TblSkill.OrderBy(x => x.SkillTitle).ToList();
+			return PartialView(values);
+		}
 
-        public PartialViewResult PartialPortfolio()
-        {
-            var value = db.TblProject.ToList();
-            return PartialView(value);
-        }
+		public PartialViewResult PartialAbout()
+		{
+			var values = db.TblAbout.ToList();
+			return PartialView(values);
+		}
 
-        public PartialViewResult PartialTestimonial()
-        {
-            var value = db.TblTestimonial.ToList();
-            return PartialView(value);
-        }
+		public PartialViewResult PartialService()
+		{
+			var values = db.TblService.ToList();
+			return PartialView(values);
+		}
 
-        public PartialViewResult PartialContact()
-        {
-            var value = db.TblContact.ToList();
-            return PartialView(value);
-        }
-        [HttpPost]
-        public PartialViewResult SendMessage(TblContact t)
-        {
-            t.SendMessageDate = DateTime.Now;
-            t.IsRead = true;
-            db.TblContact.Add(t);
-            db.SaveChanges();
-            return PartialView();
-        }
-    }
+		public PartialViewResult PartialTestimonial()
+		{
+			var values = db.TblTestimonial.Where(x => x.Status == true).ToList();
+			return PartialView(values);
+		}
+
+		public PartialViewResult PartialAddress()
+		{
+			var values = db.TblAddress.ToList();
+			return PartialView(values);
+		}
+
+		public PartialViewResult PartialSocialMedia()
+		{
+			var values = db.TblSocialMedia.Where(x => x.Status == true).ToList();
+			return PartialView(values);
+		}
+
+		public PartialViewResult PartialProject()
+		{
+			var values = db.TblProject.ToList();
+			return PartialView(values);
+		}
+
+		public PartialViewResult PartialContact()
+		{
+
+			return PartialView();
+		}
+
+		public PartialViewResult PartialStatistic()
+		{
+			ViewBag.categoryCount = db.TblCategory.Count();
+			ViewBag.testimonialCount = db.TblTestimonial.Count();
+			ViewBag.projectCount = db.TblProject.Count();
+			ViewBag.ServiceCount = db.TblService.Count();
+
+			return PartialView();
+		}
+	}
 }

@@ -1,34 +1,33 @@
 ﻿@model DevFolio.Models.TblTestimonial
-
 @{
     ViewBag.Title = "UpdateTestimonial";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
-<h2>Referans Güncelleme</h2>
+<h2>Referans Güncelle</h2>
 
-<form method="post">
-    <label>Id</label>
-    <input type="text" class="form-control" name="TestimonialId" value="@Model.TestimonialId" />
-    <br />
-    <label>Ad soyad</label>
-    <input type="text" class="form-control" name="NameSurname" value="@Model.NameSurname" />
-    <br />
-    <label>Açıklama</label>
-    <input type="text" class="form-control" name="Description" value="@Model.Description" />
-    <br />
-    <label>Yetenek Değeri</label>
-    <input type="hidden" name="Status" value="false" />
-@if (Model.Status == true)
-{
-    <input type="checkbox" class="form-control" name="Status" checked value="true" />
-}
-else
-{
-    <input type="checkbox" class="form-control" name="Status" value="true" />
-}
+<br />
+<div class="container">
 
-    <br />
-    <button class="btn btn-info">Referansı Güncelle</button>
-</form>
+    @using (Html.BeginForm("UpdateTestimonial", "Testimonial", FormMethod.Post))
+    {
+        <form class="form-group" method="post">
+            @Html.HiddenFor(x => x.TestimonialId)
+            @Html.HiddenFor(x => x.Status)
+            <label>Adı Soyadı</label>
 
+            @Html.TextBoxFor(x => x.NameSurname, new { @class = "form-control" })
+            <br />
+            <label>Açıklama</label>
+            @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+            <br />
+            <label>Resim Adresi</label>
+            @Html.TextBoxFor(x => x.ImageUrl, new { @class = "form-control" })
+            <br />
+
+            <button class="btn btn-primary">Kaydet</button>
+        </form>
+
+    }
+
+</div>

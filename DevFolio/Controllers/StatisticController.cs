@@ -12,7 +12,7 @@ namespace DevFolio.Controllers
         // GET: Statistic
         DbDevFolioEntities db = new DbDevFolioEntities();
         
-        public ActionResult Index()
+        public ActionResult StatisticList()
         {
             ViewBag.CateogoryCount = db.TblCategory.Count();
             ViewBag.ProjectCount = db.TblProject.Count();

@@ -1,5 +1,4 @@
 ﻿@model DevFolio.Models.TblAddress
-
 @{
     ViewBag.Title = "UpdateAddress";
     Layout = "~/Views/AdminLayout/Index.cshtml";
@@ -7,21 +6,30 @@
 
 <h2>Adres Güncelle</h2>
 
-<form method="post">
-    <label>ID</label>
-    <input type="text" class="form-control" name="AddresId" value="@Model.AddresId" />
-    <label>Açıklama</label>
-    <input type="text" class="form-control" name="Description" value="@Model.Description"/>
-    <br />
-    <label>Konum</label>
-    <input type="text" class="form-control" name="Location" value="@Model.Location" />
-    <br />
-    <label>Telefon Numarası</label>
-    <input type="text" class="form-control" name="PhoneNumber" value="@Model.PhoneNumber" />
-    <br />
-    <label>Email</label>
-    <input type="text" class="form-control" name="Email" value="@Model.Email" />
-    <br />
-    <button class="btn btn-success">Adres Ekle</button>
-</form>
+<br />
+<div class="container">
+
+    @using (Html.BeginForm("UpdateAddress", "Address", FormMethod.Post))
+    {
+        <form class="form-group" method="post">
+            <label>Açıklama</label>
+            @Html.HiddenFor(x => x.AddresId)
+            @Html.TextAreaFor(x => x.Description, new { @class = "form-control", rows = 2 })
+            <br />
+            <label>Adres</label>
+            @Html.TextBoxFor(x => x.Location, new { @class = "form-control" })
+            <br />
+            <label>E-Mail</label>
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+            <br />
+
+            <label>Telefon</label>
+            @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+            <br />
+
+            <button class="btn btn-primary">Güncelle</button>
+        </form>
+
+    }
+</div>
 
